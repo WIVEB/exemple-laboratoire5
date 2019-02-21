@@ -2,7 +2,7 @@
     <div>
         <img :src="image"  height="42" width="42">
         <h3>{{name}}</h3>
-        <button @click="$emit('deletePokemon')">Delete</button>
+        <md-button class="md-raised md-primary red" @click="$emit('deletePokemon')">Delete</md-button>
     </div>
 </template>
 
@@ -37,4 +37,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
+    .red{
+        background-color: lightcoral;
+    }
 </style>
