@@ -36,7 +36,6 @@
             },
             deleteThisPokemon(index){
                 /* eslint-disable no-console */
-                console.log(index)
                 this.pokemons.splice(index, 1);
             }
         }
