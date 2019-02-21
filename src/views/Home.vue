@@ -3,7 +3,7 @@
         <h1>{{ msg }}</h1>
 
         <h1>Pokemons</h1>
-        <pokemon v-for="pokemon in pokemons" :key="pokemon.name" :name="pokemon.name" :url="pokemon.url"/>
+        <pokemon v-for="(pokemon, index) in pokemons" :key="pokemon.name" :name="pokemon.name" :url="pokemon.url" v-on:deletePokemon="deleteThisPokemon(index)" />
     </div>
 </template>
 
@@ -33,6 +33,11 @@
         methods: {
             fetchData () {
                 PokemonsApi.getPokemons().then(response => this.pokemons = response);
+            },
+            deleteThisPokemon(index){
+                /* eslint-disable no-console */
+                console.log(index)
+                this.pokemons.splice(index, 1);
             }
         }
     }

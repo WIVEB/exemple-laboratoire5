@@ -2,6 +2,7 @@
     <div>
         <img :src="image"  height="42" width="42">
         <h3>{{name}}</h3>
+        <button @click="$emit('deletePokemon')">Delete</button>
     </div>
 </template>
 
@@ -22,7 +23,7 @@
         methods: {
             fetchData () {
                 PokemonApi.getPokemonImageByUrl(this.$props.url).then(response => this.image = response);
-            }
+            },
         },
         data () {
             return {
