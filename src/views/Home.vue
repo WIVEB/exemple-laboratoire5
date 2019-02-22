@@ -1,7 +1,7 @@
 <template>
     <div class="home">
-        <h1>{{ msg }}</h1>
-
+        <h1>{{ message }}</h1>
+        <message-input v-on:updateMessage="updateMessage"/>
         <h1>Pokemons</h1>
         <pokemon v-for="(pokemon, index) in pokemons" :key="pokemon.name" :name="pokemon.name" :url="pokemon.url" v-on:deletePokemon="deleteThisPokemon(index)" />
     </div>
@@ -10,11 +10,13 @@
 <script>
     import PokemonsApi from '../services/Pokemons.js'
     import Pokemon from'../components/Pokemon.vue'
+    import MessageInput from '../components/MessageInput.vue'
 
     export default {
         name: 'Home',
         components: {
-            Pokemon
+            Pokemon,
+            MessageInput
         },
         props: {
             msg: String
@@ -22,6 +24,7 @@
         data () {
             return {
                 pokemons: null,
+                message: this.$props.msg
 
             }
         },
@@ -35,8 +38,10 @@
                 PokemonsApi.getPokemons().then(response => this.pokemons = response);
             },
             deleteThisPokemon(index){
-                /* eslint-disable no-console */
                 this.pokemons.splice(index, 1);
+            },
+            updateMessage(msg){
+                this.message = msg;
             }
         }
     }
